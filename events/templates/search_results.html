@@ -1,0 +1,32 @@
+
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<form method = "post">
+    <h1>search page</h1>
+    {% csrf_token %}
+    {{ search_form | crispy }}
+    <button class = "btn btn-primary">submit</button>
+</form>
+<ul>{% for event in events %}
+    <div>
+        <div class="col-sm-6">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Event Name: {{ event.name }}</h5>
+                <p class="card-text">Category: {{ event.category.name }}</p>
+                <p class="card-text">Date: {{ event.date }}</p>
+                <p class="card-text">Location: {{ event.location }}</p>
+                <p class="card-text">Description: {{ event.description }}</p>
+               
+              </div>
+            </div>
+          </div>
+          </div>
+       
+    </div>
+{% endfor %}</ul>
+{% endblock %}
+
+
+ 

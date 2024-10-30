@@ -1,0 +1,29 @@
+
+
+
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="row">
+    {% for event in data %}
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Event Name: {{ event.name }}</h5>
+          <p class="card-text">Category: {{ event.category.name }}</p>
+          <p class="card-text">Date: {{ event.date }}</p>
+          <p class="card-text">Location: {{ event.location }}</p>
+          <p class="card-text">Description: {{ event.description }}</p>
+          {% if request.user.is_authenticated %}
+          <p>BOOKED</p>
+          {% else %}
+          <p> NOT BOOKED</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+  {% endfor %}
+  
+{% endblock %}

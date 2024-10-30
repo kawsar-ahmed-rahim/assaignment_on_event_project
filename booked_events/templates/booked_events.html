@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<form method = "post">
+    <h1>Booked events page</h1>
+    {% csrf_token %}
+    {{ form | crispy }}
+    {% for event in events %}
+    <div>
+        <div class="col-sm-6">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Event Name: {{ event.name }}</h5>
+                <p class="card-text">Category: {{ event.category.name }}</p>
+                <p class="card-text">Date: {{ event.date }}</p>
+                <p class="card-text">Location: {{ event.location }}</p>
+                <p class="card-text">Description: {{ event.description }}</p>
+                <a href="{% url 'edit_event' event.id %}" class="btn btn-primary">edit</a>
+                <a href="{% url 'delete_event' event.id %}" class="btn btn-danger">delete</a>
+              </div>
+            </div>
+          </div>
+          </div>
+       
+    </div>
+{% endfor %}
+</form>
+{% endblock %} 
+
+<!-- homepage.html -->
+<!-- {% for event in events %}
+    <div>
+        <h3>{{ event.name }}</h3>
+        <p>{{ event.date }}</p>
+        {% if event.id in booked_events %}
+            <span>Booked</span>
+        {% else %}
+            <a href="{% url 'book_event' event.id %}">Book</a>
+        {% endif %}
+    </div>
+{% endfor %} -->
